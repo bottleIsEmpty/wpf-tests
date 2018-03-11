@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using tests.Persistence;
 
 namespace tests
 {
@@ -20,9 +21,25 @@ namespace tests
     /// </summary>
     public partial class MainWindow : Window
     {
+        private TestsContext _context = new TestsContext(); 
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var login = Login.Text;
+            var password = Password.Password;
+
+            if (login == "admin" && password == "admin")
+            {
+                TestsSelectWindow window = new TestsSelectWindow();
+                window.Show();
+                this.Close();
+            }
+                
         }
     }
 }
